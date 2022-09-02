@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      .container {
+        width: 100%;
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <header>
+          <h2>Todo App</h2>
+        </header>
+        <section id="inputs">
+          <form id="todo-form" class="container" onsubmit="submitForm(event)" action="">
+            <label for="name">
+              Name
+              <input id="name" type="text" name="name" 
+            /></label>
+            <label for="dateCreated"
+              >Date Created<input
+                id="dateCreated"
+                type="date"
+                name="dateCreated"
+                
+            /></label>
+            <label for="isComplete"
+              >Is Completed<input
+                id="isComplete"
+                type="checkbox"
+                name="isComplete"
+            /></label>
+            <label for="dueDate"
+              >Due Date<input id="dueDate" type="date" name="dueDate"
+            /></label>
+            <button
+              id="add-todo"
+              type="submit"
+              name="add-todo"
+            >
+              Add Todo
+            </button>
+          </form>
+        </section>
+        <section id="output">
+          <ul id="taskList"></ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="./src/app.js"></script>
+  </body>
 </html>

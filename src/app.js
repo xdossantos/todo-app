@@ -1,17 +1,3 @@
-// TODO: Get input from UI
-const item = {
-  name: "create todo app",
-  dataCreated: new Date(),
-  isComplete: false,
-  dueDate: undefined,
-};
-const item2 = {
-  name: "take a bath",
-  dataCreated: new Date(),
-  isComplete: false,
-  dueDate: undefined,
-};
-
 const checkIdExists = (array, id) => array.find((item) => id === item.id);
 
 class App {
@@ -19,9 +5,22 @@ class App {
   items = [];
   constructor() {}
   // CRUD
+
+  transact = function () {
+    //   TODO: Write data to localStorage
+    // window.localStorage.setItem("todos", this.items);
+    document.getElementById("taskList").innerHTML = this.items
+      .map(
+        (todo, index) => `<li value=${index} key=${index}> ${todo.name} </li>`
+      )
+      .join("");
+
+    // TODO: Update the UI with new data
+  };
   addTodo(newTodo = {}) {
     const _newTodo = { ...newTodo, id: this.items.length };
     this.items.push(_newTodo);
+    this.transact();
   }
   get todos() {
     // Read local storage
@@ -50,29 +49,29 @@ class App {
     }
     this.transact();
   }
-  transact() {
-    //   TODO: Write data to localStorage
-    localStorage.setItem("todos", this.items);
-    console.log(this.items);
-    // TODO: Update the UI with new data
-  }
 }
 
 const myApp = new App();
 
-myApp.addTodo(item);
-myApp.addTodo(item2);
-// console.log(myApp.todos);
-console.log("NEW TODOS");
-const updatedItem = {
-  id: 1,
-  name: "take a long relaxing bath",
-  dataCreated: new Date(),
-  isComplete: false,
-  dueDate: undefined,
-};
+function submitForm(e) {
+  e.preventDefault();
+  const form = document.getElementById("todo-form");
+  console.log(form.elements);
+  [...form.elements].forEach((item) => {
+    console.log(item.value);
+  });
 
-myApp.updateTodo(updatedItem);
-myApp.deleteTodo(1);
+  const newTodo = {
+    name: form.elements[0].value,
+    dateCreated: form.elements[1].value,
+    isComplete: form.elements[2].value,
+    dueDate: form.elements[3].value,
+  };
+
+  myApp.addTodo(newTodo);
+}
+
+// myApp.updateTodo(updatedItem);
+// myApp.deleteTodo(1);
 
 // console.log(myApp.todos);
